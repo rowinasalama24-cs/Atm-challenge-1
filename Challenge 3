@@ -1,0 +1,52 @@
+let studentName = prompt("Enter student name:");
+let attendance = Number(prompt("Enter attendance percentage:"));
+let midterm = Number(prompt("Enter midterm score:"));
+let finalExam = Number(prompt("Enter final exam score:"));
+let assignment = Number(prompt("Enter assignment score:"));
+let paymentStatus = prompt("Is tuition paid? (yes/no)");
+
+if (paymentStatus.toLowerCase() !== "yes") {
+    alert("You cannot view your results because tuition is unpaid.");
+} else if (attendance < 75) {
+    alert(studentName + " has failed due to low attendance.");
+} else {
+
+    let total = midterm + finalExam + assignment;
+    let grade = "";
+    let status = "";
+
+    if (total >= 90) {
+        grade = "A";
+    } else if (total >= 80) {
+        grade = "B";
+    } else if (total >= 70) {
+        grade = "C";
+    } else if (total >= 60) {
+        grade = "D";
+    } else {
+        grade = "F";
+    }
+
+    if (grade === "F") {
+        status = "Fail";
+    } else {
+        status = "Pass";
+    }
+
+    let scholarship = "";
+
+    if (grade === "A") {
+        scholarship = "\nScholarship Eligibility: Eligible";
+    } else {
+        scholarship = "\nScholarship Eligibility: Not Eligible";
+    }
+
+    alert(
+        "Student Name: " + studentName +
+        "\nAttendance: " + attendance + "%" +
+        "\nTotal Score: " + total +
+        "\nGrade: " + grade +
+        "\nAcademic Status: " + status +
+        scholarship
+    );
+}
