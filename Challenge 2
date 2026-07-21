@@ -1,0 +1,49 @@
+let customerName = prompt("Enter customer name:");
+let category = prompt("Enter product category (Electronics, Clothing, Grocery):");
+let price = Number(prompt("Enter product price:"));
+let quantity = Number(prompt("Enter quantity:"));
+let coupon = prompt("Enter coupon code (or leave empty):");
+let paymentMethod = prompt("Enter payment method (Cash, Card, Wallet):");
+
+let subtotal = price * quantity;
+let discount = 0;
+
+if (category.toLowerCase() === "electronics") {
+    discount += subtotal * 0.10;
+} else if (category.toLowerCase() === "clothing") {
+    discount += subtotal * 0.20;
+} else if (category.toLowerCase() === "grocery") {
+    discount += subtotal * 0.05;
+}
+
+if (coupon.toUpperCase() === "SAVE10") {
+    discount += subtotal * 0.10;
+}
+
+if (
+    paymentMethod.toLowerCase() === "card" ||
+    paymentMethod.toLowerCase() === "wallet"
+) {
+    discount += subtotal * 0.05;
+}
+
+let total = subtotal - discount;
+
+if (total < 0) {
+    total = 0;
+}
+
+let vat = total * 0.14;
+let finalPrice = total + vat;
+
+alert(
+    "Invoice\n\n" +
+    "Customer: " + customerName + "\n" +
+    "Category: " + category + "\n" +
+    "Price: " + price + "\n" +
+    "Quantity: " + quantity + "\n" +
+    "Subtotal: " + subtotal.toFixed(2) + "\n" +
+    "Discount: " + discount.toFixed(2) + "\n" +
+    "VAT: " + vat.toFixed(2) + "\n" +
+    "Final Price: " + finalPrice.toFixed(2)
+);
